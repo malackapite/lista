@@ -4,6 +4,6 @@ export const OBJEKTUMLISTA=[
     {nev:"macska", szin:"szines", kor:2},
     {nev:"Nyávogó Nyávogó", szin:"szörös", kor:12},
     {nev:"dsajlk", szin:"fekete", kor:4},
-    {nev:"🐈💨", szin:"rga(234,32,123)", kor:10},
+    {nev:"🐈💨", szin:"rgb(234,32,123)", kor:10},
     {nev:[]+{}, szin:"fehér", kor:22}
 ]
