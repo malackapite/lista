@@ -1,3 +1,5 @@
+import * as THREE from './three.module.js';
+
 var APP = {
 
 	Player: function () {
@@ -24,6 +26,8 @@ var APP = {
 		this.width = 500;
 		this.height = 500;
 
+		const ido = new THREE.Clock();
+		//ido.stop();
 		this.load = function ( json ) {
 
 			var project = json.project;
@@ -102,6 +106,33 @@ var APP = {
 
 			dispatch( events.init, arguments );
 
+				
+			const raycaster = new THREE.Raycaster();
+			const clickMouse = new THREE.Vector2();
+			window.addEventListener("click", event =>{
+				clickMouse.x = (event.clientX/window.innerWidth)*2-1;
+				clickMouse.y = -(event.clientY/window.innerHeight)*2+1;
+				raycaster.setFromCamera(clickMouse, camera);
+				const found = raycaster.intersectObjects(scene.children);
+				if(found.length>0 && found[0].object.name=="fart"){
+					var selectedObject = scene.getObjectByName("fart");
+					var masik= selectedObject.parent.clone();
+					//masik.scale.set(300,300,600);
+					var a= scene.getObjectByName("node_id31");
+					//const ido = new THREE.Clock();
+					ido.start();
+
+					
+					a.parent.add(masik);
+					selectedObject.parent.clear();
+					console.log(masik.scale);
+					//console.log(scene.getObjectByName("node_id29").position);
+					
+				}
+		})
+	
+	
+	
 		};
 
 		this.setCamera = function ( value ) {
@@ -165,6 +196,14 @@ var APP = {
 				console.error( ( e.message || e ), ( e.stack || '' ) );
 
 			}
+			try{
+				var selectedObject = scene.getObjectByName("fart");
+				if (ido.getElapsedTime()<2) {
+					selectedObject.scale.x=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/4,104528463 //(-Math.pow((ido.getElapsedTime()-3),2)+9)/9
+					selectedObject.scale.y=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/4,104528463
+					selectedObject.scale.z=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/4,104528463
+				}
+			}catch(e){}
 
 			renderer.render( scene, camera );
 
