@@ -125,6 +125,7 @@ var APP = {
 					
 					a.parent.add(masik);
 					selectedObject.parent.clear();
+					new Audio('fart2.mp3').play()
 					console.log(masik.scale);
 					//console.log(scene.getObjectByName("node_id29").position);
 					
@@ -198,10 +199,10 @@ var APP = {
 			}
 			try{
 				var selectedObject = scene.getObjectByName("fart");
-				if (ido.getElapsedTime()<2) {
-					selectedObject.scale.x=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/4,104528463 //(-Math.pow((ido.getElapsedTime()-3),2)+9)/9
-					selectedObject.scale.y=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/4,104528463
-					selectedObject.scale.z=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/4,104528463
+				if (ido.getElapsedTime()<1) {
+					selectedObject.scale.x=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/1.052335956 //4,104528463 //(-Math.pow((ido.getElapsedTime()-3),2)+9)/9
+					selectedObject.scale.y=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/1.052335956 //4,104528463
+					selectedObject.scale.z=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/1.052335956 //4,104528463
 				}
 			}catch(e){}
 
