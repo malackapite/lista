@@ -1,5 +1,9 @@
 export function megjelenit(lista){
-    let szoveg=""
+    let szoveg=`<thead><tr>
+    <th>név</th>
+    <th>szín</th>
+    <th>kor</th>
+    </tr></thead><tbody>`
     for (let ix = 0; ix < lista.length; ix++) {
         szoveg+=`<tr>
         <td>${lista[ix].nev}</td>
@@ -8,5 +12,5 @@ export function megjelenit(lista){
         </tr>
         `
     }
-    $("table").eq(0).html(szoveg)
+    $("table").eq(0).html(szoveg+"</tbody>")
 }

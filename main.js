@@ -3,6 +3,7 @@ import { szurNevSzerint, szurKorSzerint, szurSzinSzerint, szur } from "./szures.
 import { megjelenit } from "./megjelenit.js";
 
 $(document).ready(function(){
+    megjelenit(OBJEKTUMLISTA)
     $("#Nev").on("keyup",function(){
         szur(OBJEKTUMLISTA)
     })
