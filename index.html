@@ -14,19 +14,36 @@
 <body>
     <main>
         <header><h1>Adatok <span style="text-decoration: line-through;">tészta</span>szűrése</h1></header>
-        <nav>
+        <!-- <nav>
             <ul>
                 <li>Macskák adatainak megtekintése</li>
                 <li>Admin felület</li>
             </ul>
-        </nav>
-        <article>
-            <label for="Nev"></label>
-            <input type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
-            <label for="Szin"></label>
-            <input type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
-            <label for="Kor"></label>
-            <input type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
+        </nav> -->
+        <nav class="navbar navbar-expand bg-body-tertiary">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Macskák adatainak megtekintése</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Admin felület</a>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <article class="">
+            <div class="row">
+                <!-- <label for="Nev"></label> -->
+                <input class="col-4" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
+                <!-- <label for="Szin"></label> -->
+                <input class="col-4" type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
+                <!-- <label for="Kor"></label> -->
+                <input class="col-4" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
+            </div>
             <table class="table table-striped table-hover"></table>
         </article>
         <footer>

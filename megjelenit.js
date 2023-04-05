@@ -15,24 +15,18 @@ export function megjelenit(lista){
     }
     $("table").eq(0).html(szoveg+"</tbody>")
     
-    $("th").eq(0).on('click',function(){
-        let rendezettLista =  rendez.rendezesObjektum(lista.slice(0,lista.length),"nev")
-        //console.log(listaEgyezes(lista,rendezettLista));
-        listaEgyezes(lista,rendezettLista)?megjelenit(rendezettLista.reverse()):megjelenit(rendezettLista)
-        //megjelenit();
-    })
-    $("th").eq(1).on('click',function(){
-        megjelenit(rendez.rendezesObjektum(lista,"szin"));
-    })
-    $("th").eq(2).on('click',function(){
-        megjelenit(rendez.rendezesObjektum(lista,"kor"));
-    })
+    let thead=["nev","szin","kor"]
+    for (let ix = 0; ix < 3; ix++) {
+        $("th").eq(ix).on('click',function(){
+            let rendezettLista =  rendez.rendezesObjektum(lista.slice(0,lista.length),thead[ix])
+            listaEgyezes(lista,rendezettLista)?megjelenit(rendezettLista.reverse()):megjelenit(rendezettLista)
+        })
+    }
 }
 
 function listaEgyezes(lista,rendezettLista) {
-    //todo bugfix
     let ix=0
-    while (ix<lista.length && lista[ix].nev!=rendezettLista[ix].nev) {
+    while (ix<lista.length && lista[ix]==rendezettLista[ix]) {
         ix++
     }
     return ix>=lista.length
