@@ -13,7 +13,7 @@ $(document).ready(function(){
     $("#Szin").on("keyup",function(){
         szur(OBJEKTUMLISTA)
     })
-    console.log(SZAMLISTA);
+    /*console.log(SZAMLISTA);
     rendezesSzam(SZAMLISTA)
     console.log(SZAMLISTA);
     veletlenSorrend(SZAMLISTA)
@@ -23,7 +23,7 @@ $(document).ready(function(){
     console.log(SZOVEGLISTA);
     veletlenSorrend(SZOVEGLISTA)
     console.log(SZOVEGLISTA);
-    console.log("🐈💨");
+    console.log("🐈💨");*/
 
     //rendezesObjektumKor(OBJEKTUMLISTA)
     // rendezesObjektum(OBJEKTUMLISTA,"kor")
@@ -34,52 +34,9 @@ $(document).ready(function(){
     // rendezesObjektum(OBJEKTUMLISTA,"nev")
     // console.log(OBJEKTUMLISTA)
 
-    console.log("tésza szűrés");
-    let szuresfeltetel="🐈"
+    // console.log("tésza szűrés");
+    // let szuresfeltetel="🐈"
     
-    console.log(szurNevSzerint(OBJEKTUMLISTA, szuresfeltetel));
-    console.log(szurKorSzerint(OBJEKTUMLISTA, "==12"));
+    // console.log(szurNevSzerint(OBJEKTUMLISTA, szuresfeltetel));
+    // console.log(szurKorSzerint(OBJEKTUMLISTA, "==12"));
 })
-
-function rendezesSzoveg(lista){
-    lista.sort()
-}
-
-function rendezesSzam(lista){
-    lista.sort(function(a, b){
-        return a-b
-    });
-}
-
-function veletlenSorrend(lista){
-    lista.sort(function(a, b){
-        return Math.random()-0.5
-    });
-}
-
-function rendezesObjektumKor(lista){
-    lista.sort(function(a, b){
-        return a.kor-b.kor
-    });
-}
-
-function rendezesObjektumSzin(lista){
-    lista.sort(function(a, b){
-        return a.szin>b.szin?-1:1
-    });
-}
-
-function rendezesObjektumNev(lista, kulcs){
-    lista.sort(function(a, b){
-        return a[kulcs]>b[kulcs]?-1:1
-    });
-}
-
-function rendezesObjektum(lista, kulcs){
-    if(kulcs=="kor")
-        rendezesObjektumKor(lista)
-    else if(kulcs=="nev")
-        rendezesObjektumNev(lista, kulcs)
-    else
-        rendezesObjektumSzin(lista)
-}
