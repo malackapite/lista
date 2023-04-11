@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>:cat2::dash:</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery.js"></script>
+  <script src="load.js" type="module"></script>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>Adatok <span id="teszta">tészta</span>szűrése</h1>
+    </header>
+    <nav class="navbar navbar-expand bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Macskák adatainak megtekintése</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin.html">Admin felület</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <article>
+      <div id="in" class="row justify-content-between">
+        <div class="col-10 row">
+          <input class="col-4" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
+          <input class="col-4" type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
+          <input class="col-4" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
+        </div>
+        <div id="gomb" class="col-2">
+          <input id="ujElem" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ad" type="button"
+            value="Új elem">
+        </div>
+      </div>
+      <table class="table table-striped table-hover table-bordered"></table>
+    </article>
+    <footer>
+      Jessie, we need to cook
+    </footer>
+  </main>
+
+  <!-- modal -->
+  <div class="modal fade" id="ad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Macska hozzáadása</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="nevAd" class="col-form-label" pattern="^(?!.*\S)">Név:</label>
+              <input type="text" class="form-control" id="nevAd">
+            </div>
+            <div class="mb-3">
+              <label for="szinAd" class="col-form-label">Szín:</label>
+              <input type="text" class="form-control" id="szinAd">
+            </div>
+            <div class="mb-3">
+              <label for="korAd" class="col-form-label">Kor:</label>
+              <input type="number" class="form-control" id="korAd" min="0">
+            </div>
+            <img src="generator.gif" alt="">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+          <button id="kuld" type="button" class="btn btn-primary">Hozzáad</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="torol" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Macska törlése :(</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>A művelet nem vonható vissza.</p>
+          <i>(továbbá pert indítunk maga ellen macskák megsemmisítésért)</i>
+          <img src="explode-cute.gif" alt="a">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+          <button id="torles" type="button" class="btn btn-danger">Törlés</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="module">
+
+    import * as THREE from './js/three.module.js';
+    import { APP } from './js/app.js';
+    import { VRButton } from './js/VRButton.js';
+
+    window.THREE = THREE; // Used by APP Scripts.
+    window.VRButton = VRButton; // Used by APP Scripts.
+
+    THREE.ColorManagement.enabled = true;
+
+    var loader = new THREE.FileLoader();
+    loader.load('app.json', function (text) {
+
+      var player = new APP.Player();
+      player.load(JSON.parse(text));
+      player.setSize(window.innerWidth - 8, window.innerHeight / 1.7);
+      player.play();
+
+      document.body.appendChild(player.dom);
+
+      window.addEventListener('resize', function () {
+
+        player.setSize(window.innerWidth - 8, window.innerHeight / 1.7);
+
+      });
+
+    });
+  </script>
+</body>
+
+</html>

@@ -14,44 +14,35 @@
 <body>
     <main>
         <header><h1>Adatok <span style="text-decoration: line-through;">tészta</span>szűrése</h1></header>
-        <!-- <nav>
-            <ul>
-                <li>Macskák adatainak megtekintése</li>
-                <li>Admin felület</li>
-            </ul>
-        </nav> -->
         <nav class="navbar navbar-expand bg-body-tertiary">
             <div class="container-fluid">
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Macskák adatainak megtekintése</a>
+                    <a class="nav-link" href="index.html">Macskák adatainak megtekintése</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">Admin felület</a>
+                    <a class="nav-link" href="admin.html">Admin felület</a>
                   </li>
                   
                 </ul>
               </div>
             </div>
           </nav>
-        <article class="">
-            <div class="row">
-                <!-- <label for="Nev"></label> -->
-                <input class="col-4" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
-                <!-- <label for="Szin"></label> -->
-                <input class="col-4" type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
-                <!-- <label for="Kor"></label> -->
-                <input class="col-4" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
-            </div>
-            <table class="table table-striped table-hover"></table>
-        </article>
-        <footer>
-            <!-- <canvas id="c"></canvas> -->
+          <article>
+          <h1 id="nev"></h1>
+          <p>Szin: <span id="szin"></span></p>
+          <p>Kor: <span id="kor"></span></p>
+          </article>
+          <div id="lep">
+            <input id="hatra" type="button" class="btn btn-secondary" value="<">
+            <input id="elore" type="button" class="btn btn-secondary" value=">">
+          </div>
+          <footer>
+            Jessie, we need to cook
         </footer>
-    
-        
     </main>
+    
     <script type="module">
 
         import * as THREE from './js/three.module.js';
@@ -68,27 +59,18 @@
 
             var player = new APP.Player();
             player.load( JSON.parse( text ) );
-            player.setSize( window.innerWidth, window.innerHeight/1.7 );
+            player.setSize( window.innerWidth-8, window.innerHeight/1.7 );
             player.play();
 
-            document.body.appendChild( player.dom );
+            document.getElementsByTagName("article")[0].appendChild( player.dom );
             
             window.addEventListener( 'resize', function () {
 
-                player.setSize( window.innerWidth, window.innerHeight/1.7 );
+                player.setSize( window.innerWidth-8, window.innerHeight/1.7 );
 
             } );
 
         } );
-  
-
-        // let button = document.createElement( 'a' );
-        // button.href = 'https://threejs.org/editor/#file=' + location.href.split( '/' ).slice( 0, - 1 ).join( '/' ) + '/app.json';
-        // button.style.cssText = 'position: absolute; bottom: 20px; right: 20px; padding: 10px 16px; color: #fff; border: 1px solid #fff; border-radius: 20px; text-decoration: none;';
-        // button.target = '_blank';
-        // button.textContent = 'EDIT';
-        // document.body.appendChild( button );
-
     </script>
 </body>
 </html>

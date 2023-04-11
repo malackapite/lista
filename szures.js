@@ -30,8 +30,5 @@ export function szur(belista){
     let lista=szurNevSzerint(belista, $("#Nev").val())
     lista=szurKorSzerint(lista, $("#Kor").val())
     lista=szurSzinSzerint(lista, $("#Szin").val())
-    // console.log(szurNevSzerint(OBJEKTUMLISTA, $("#Nev").val()));
-    // console.log(szurKorSzerint(OBJEKTUMLISTA, $("#Kor").val()));
-    // console.log(szurSzinSzerint(OBJEKTUMLISTA, $("#Szin").val()));
     megjelenit(lista)
 }

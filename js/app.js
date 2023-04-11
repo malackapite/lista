@@ -1,3 +1,4 @@
+import { OBJEKTUMLISTA } from '../adat.js';
 import * as THREE from './three.module.js';
 
 var APP = {
@@ -27,7 +28,13 @@ var APP = {
 		this.height = 500;
 
 		const ido = new THREE.Clock();
+		const idoCam = new THREE.Clock();
+		//idoCam.stop()
 		//ido.stop();
+		let nth=[0,0]
+		let fing
+		const distance=2.2
+
 		this.load = function ( json ) {
 
 			var project = json.project;
@@ -105,8 +112,13 @@ var APP = {
 			}
 
 			dispatch( events.init, arguments );
-
-				
+			
+			for (let ix = 0; ix < OBJEKTUMLISTA.length-1; ix++) {
+				var asd= scene.getObjectByName("node_id34").clone();
+				asd.name="macska"+ix
+				scene.add(asd);
+				asd.position.x=distance+distance*ix	
+			}	
 			const raycaster = new THREE.Raycaster();
 			const clickMouse = new THREE.Vector2();
 			window.addEventListener("click", event =>{
@@ -118,22 +130,36 @@ var APP = {
 					var selectedObject = scene.getObjectByName("fart");
 					var masik= selectedObject.parent.clone();
 					//masik.scale.set(300,300,600);
-					var a= scene.getObjectByName("node_id31");
+					var asd= scene.getObjectByName("node_id31");
 					//const ido = new THREE.Clock();
 					ido.start();
 
-					
-					a.parent.add(masik);
+					asd.parent.add(masik);
 					selectedObject.parent.clear();
 					new Audio('fart2.mp3').play()
-					console.log(masik.scale);
+					// console.log(masik.scale);
 					//console.log(scene.getObjectByName("node_id29").position);
-					
+					//console.log(masik.scale);
+					//fing=masik
+					//console.log(fing);
 				}
 		})
 	
-	
-	
+		$("#elore").on("click",function() {
+			idoCam.start()
+			// console.log(nth);
+			nth.shift()
+			nth.push(Math.min(nth[0]+1,OBJEKTUMLISTA.length-1))
+			console.log(nth);
+		})
+
+		$("#hatra").on("click",function() {
+			idoCam.start()
+			// console.log(nth);
+			nth.shift()
+			nth.push(Math.max(nth[0]-1,0))
+			console.log(nth);
+		})
 		};
 
 		this.setCamera = function ( value ) {
@@ -199,12 +225,28 @@ var APP = {
 			}
 			try{
 				var selectedObject = scene.getObjectByName("fart");
+				// console.log(selectedObject);
+				// console.log(fing);
 				if (ido.getElapsedTime()<1) {
 					selectedObject.scale.x=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/1.052335956 //4,104528463 //(-Math.pow((ido.getElapsedTime()-3),2)+9)/9
 					selectedObject.scale.y=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/1.052335956 //4,104528463
 					selectedObject.scale.z=(Math.pow((ido.getElapsedTime()),2)+Math.sin(ido.getElapsedTime()*3))/1.052335956 //4,104528463
 				}
 			}catch(e){}
+			
+			try{
+				if (idoCam.getElapsedTime()<1) {
+					camera.position.x=nth[0]*distance+(nth[1]-nth[0])*(Math.pow((idoCam.getElapsedTime()),2))/(Math.pow(1,2)) *distance
+					//console.log(camera.position.x);
+				}
+			}catch(e){}
+			
+			try{
+				for (let ix = 0; ix < OBJEKTUMLISTA.length; ix++) {
+					let asd=scene.getObjectByName("macska"+ix).rotation.y = ( time * 0.001) * -.5;
+				}
+			}
+			catch(e){}
 
 			renderer.render( scene, camera );
 
@@ -263,7 +305,6 @@ var APP = {
 
 		};
 
-		//
 
 		function onKeyDown( event ) {
 
