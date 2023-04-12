@@ -1,5 +1,5 @@
-import { OBJEKTUMLISTA } from "./adat.js"
-import * as rendez from "./rendez.mjs"
+import { OBJEKTUMLISTA } from "../both/adat.js"
+import * as rendez from "../both/rendez.mjs"
 
 export let selectedX=-1
 export function megjelenit(lista){
@@ -46,7 +46,7 @@ function selectXevent(nth) {
     $("#td"+nth).ready(function(){
         $("#td"+nth).on("click",function() { 
             selectedX=nth
-            console.log(selectedX);
+            //console.log(selectedX);
         })
     })
 }

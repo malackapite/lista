@@ -1,5 +1,5 @@
-import { SZAMLISTA, SZOVEGLISTA, OBJEKTUMLISTA } from "./adat.js";
-import { szurNevSzerint, szurKorSzerint, szurSzinSzerint, szur } from "./szures.js";
+import { SZAMLISTA, SZOVEGLISTA, OBJEKTUMLISTA } from "../both/adat.js";
+import { szurNevSzerint, szurKorSzerint, szurSzinSzerint, szur } from "../both/szures.js";
 import { megjelenit, selectedX } from "./megjelenit.js";
 
 

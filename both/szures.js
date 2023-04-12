@@ -1,4 +1,4 @@
-import { megjelenit } from "./megjelenit.js"
+import { megjelenit } from "../admin/megjelenit.js"
 
 export function szurNevSzerint(lista, feltetel){
     const eredmenyLista = lista.filter(function(macska){

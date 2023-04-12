@@ -1,5 +1,5 @@
-import { OBJEKTUMLISTA } from "./adat.js"
-import * as THREE from './js/three.module.js';
+import { OBJEKTUMLISTA } from "../both/adat.js"
+import * as THREE from '../js/three.module.js';
 
 $(document).ready(function(){
    let nth=0

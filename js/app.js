@@ -1,4 +1,4 @@
-import { OBJEKTUMLISTA } from '../adat.js';
+import { OBJEKTUMLISTA } from '../both/adat.js';
 import * as THREE from './three.module.js';
 
 var APP = {
@@ -136,7 +136,7 @@ var APP = {
 
 					asd.parent.add(masik);
 					selectedObject.parent.clear();
-					new Audio('fart2.mp3').play()
+					new Audio('both/fart2.mp3').play()
 					// console.log(masik.scale);
 					//console.log(scene.getObjectByName("node_id29").position);
 					//console.log(masik.scale);
