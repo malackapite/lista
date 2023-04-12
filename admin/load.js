@@ -1,43 +1,59 @@
 import { SZAMLISTA, SZOVEGLISTA, OBJEKTUMLISTA } from "../both/adat.js";
 import { szurNevSzerint, szurKorSzerint, szurSzinSzerint, szur } from "../both/szures.js";
-import { megjelenit, selectedX } from "./megjelenit.js";
+import { megjelenit, selectedRow, hol } from "./megjelenit.js";
 
 
-$(document).ready(function(){
+$(document).ready(function () {
     megjelenit(OBJEKTUMLISTA)
-    $("#Nev").on("keyup",function(){
+    $("#Nev").on("keyup", function () {
         szur(OBJEKTUMLISTA)
     })
-    $("#Kor").on("keyup",function(){
+    $("#Kor").on("keyup", function () {
         szur(OBJEKTUMLISTA)
     })
-    $("#Szin").on("keyup",function(){
+    $("#Szin").on("keyup", function () {
         szur(OBJEKTUMLISTA)
     })
-    $("#kuld").on("click",function() { 
-        if($("#korAd").val()>=0 && $("#nevAd").val()!="" && $("#szinAd").val()!=""){
+    $("#kuld").on("click", function () {
+        if (validator("Ad")) {
             $('#ad').modal("hide");
-            OBJEKTUMLISTA.push({nev:$("#nevAd").val()
-            , szin:$("#szinAd").val()
-            , kor:$("#korAd").val()
-            , id:OBJEKTUMLISTA.length==0?1:OBJEKTUMLISTA[OBJEKTUMLISTA.length-1].id+1})
+            OBJEKTUMLISTA.push({
+                nev: $("#nevAd").val()
+                , szin: $("#szinAd").val()
+                , kor: $("#korAd").val()
+                , id: OBJEKTUMLISTA.length == 0 ? 1 : OBJEKTUMLISTA[OBJEKTUMLISTA.length - 1].id + 1
+            })
             megjelenit(OBJEKTUMLISTA)
             $("#nevAd").val("")
             $("#szinAd").val("")
             $("#korAd").val("")
-        }  
+        }
     })
 
-    $("#torles").on("click",function() { 
+    $("#torles").on("click", function () {
         $('#torol').modal("hide");
-        let ix=0
-        while (ix<OBJEKTUMLISTA.length && OBJEKTUMLISTA[ix].id != selectedX)
-            ix++
-        OBJEKTUMLISTA.splice(ix,1)
+        OBJEKTUMLISTA.splice(hol(), 1)
         megjelenit(OBJEKTUMLISTA)
     })
 
+    $("#szerkeszt").on("click", function () {
+        if (validator("sz")) {
+            let ix = hol()
+            $('#szerkesztLap').modal("hide");
+            OBJEKTUMLISTA[ix] = {
+                nev: $("#nevsz").val()
+                , szin: $("#szinsz").val()
+                , kor: $("#korsz").val()
+                , id: OBJEKTUMLISTA[ix].id
+            }
+            megjelenit(OBJEKTUMLISTA)
+        }
+    })
 
+    
+    function validator(postfix) {
+        return $("#kor" + postfix).val() >= 0 && $("#kor" + postfix).val() != "" && $("#nev" + postfix).val() != "" && $("#szin" + postfix).val() != ""
+    }
     /*console.log(SZAMLISTA);
     rendezesSzam(SZAMLISTA)
     console.log(SZAMLISTA);
@@ -61,7 +77,7 @@ $(document).ready(function(){
 
     // console.log("tésza szűrés");
     // let szuresfeltetel="🐈"
-    
+
     // console.log(szurNevSzerint(OBJEKTUMLISTA, szuresfeltetel));
     // console.log(szurKorSzerint(OBJEKTUMLISTA, "==12"));
 })
