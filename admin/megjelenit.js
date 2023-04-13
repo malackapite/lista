@@ -15,8 +15,8 @@ export function megjelenit(lista) {
         <th>${lista[ix].nev}</th>
         <td>${lista[ix].szin}</td>
         <td>${lista[ix].kor}</td>
-        <td id="td${lista[ix].id}B" style="text-align:center;" data-bs-toggle="modal" data-bs-target="#szerkesztLap">✏️💨</td>
-        <td id="td${lista[ix].id}" style="text-align:center;" data-bs-toggle="modal" data-bs-target="#torol">❌💨</td>
+        <td id="td${lista[ix].id}B" style="text-align:center; cursor:pointer" data-bs-toggle="modal" data-bs-target="#szerkesztLap">✏️💨</td>
+        <td id="td${lista[ix].id}" style="text-align:center; cursor:pointer" data-bs-toggle="modal" data-bs-target="#torol">❌💨</td>
         </tr>
         `
         selectXevent(lista[ix].id)

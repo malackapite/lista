@@ -1,59 +1,12 @@
-import { SZAMLISTA, SZOVEGLISTA, OBJEKTUMLISTA } from "../both/adat.js";
+import { SZAMLISTA, SZOVEGLISTA} from "../both/adat.js";
 import { szurNevSzerint, szurKorSzerint, szurSzinSzerint, szur } from "../both/szures.js";
 import { megjelenit, selectedRow, hol } from "./megjelenit.js";
 
 
 $(document).ready(function () {
-    megjelenit(OBJEKTUMLISTA)
-    $("#Nev").on("keyup", function () {
-        szur(OBJEKTUMLISTA)
-    })
-    $("#Kor").on("keyup", function () {
-        szur(OBJEKTUMLISTA)
-    })
-    $("#Szin").on("keyup", function () {
-        szur(OBJEKTUMLISTA)
-    })
-    $("#kuld").on("click", function () {
-        if (validator("Ad")) {
-            $('#ad').modal("hide");
-            OBJEKTUMLISTA.push({
-                nev: $("#nevAd").val()
-                , szin: $("#szinAd").val()
-                , kor: $("#korAd").val()
-                , id: OBJEKTUMLISTA.length == 0 ? 1 : OBJEKTUMLISTA[OBJEKTUMLISTA.length - 1].id + 1
-            })
-            megjelenit(OBJEKTUMLISTA)
-            $("#nevAd").val("")
-            $("#szinAd").val("")
-            $("#korAd").val("")
-        }
-    })
-
-    $("#torles").on("click", function () {
-        $('#torol').modal("hide");
-        OBJEKTUMLISTA.splice(hol(), 1)
-        megjelenit(OBJEKTUMLISTA)
-    })
-
-    $("#szerkeszt").on("click", function () {
-        if (validator("sz")) {
-            let ix = hol()
-            $('#szerkesztLap').modal("hide");
-            OBJEKTUMLISTA[ix] = {
-                nev: $("#nevsz").val()
-                , szin: $("#szinsz").val()
-                , kor: $("#korsz").val()
-                , id: OBJEKTUMLISTA[ix].id
-            }
-            megjelenit(OBJEKTUMLISTA)
-        }
-    })
-
     
-    function validator(postfix) {
-        return $("#kor" + postfix).val() >= 0 && $("#kor" + postfix).val() != "" && $("#nev" + postfix).val() != "" && $("#szin" + postfix).val() != ""
-    }
+    getObjLista()
+    
     /*console.log(SZAMLISTA);
     rendezesSzam(SZAMLISTA)
     console.log(SZAMLISTA);
@@ -81,3 +34,67 @@ $(document).ready(function () {
     // console.log(szurNevSzerint(OBJEKTUMLISTA, szuresfeltetel));
     // console.log(szurKorSzerint(OBJEKTUMLISTA, "==12"));
 })
+
+function getObjLista() {
+    let tomb1 = []
+    let file = "admin/adat.json"
+    fetch(file)
+        .then(response => response.json())
+        .then(data => {
+            tomb1 = data.OBJEKTUMLISTA
+            setEvents(tomb1)
+        }).catch(e => console.log(e));
+}
+
+function setEvents(tomb) {
+
+    megjelenit(tomb)
+    $("#Nev").on("keyup", function () {
+        szur(tomb)
+    })
+    $("#Kor").on("keyup", function () {
+        szur(tomb)
+    })
+    $("#Szin").on("keyup", function () {
+        szur(tomb)
+    })
+    $("#kuld").on("click", function () {
+        if (validator("Ad")) {
+            $('#ad').modal("hide");
+            tomb.push({
+                nev: $("#nevAd").val()
+                , szin: $("#szinAd").val()
+                , kor: $("#korAd").val()
+                , id: tomb.length == 0 ? 1 : tomb[tomb.length - 1].id + 1
+            })
+            megjelenit(tomb)
+            $("#nevAd").val("")
+            $("#szinAd").val("")
+            $("#korAd").val("")
+        }
+    })
+
+    $("#torles").on("click", function () {
+        $('#torol').modal("hide");
+        tomb.splice(hol(), 1)
+        megjelenit(tomb)
+    })
+
+    $("#szerkeszt").on("click", function () {
+        if (validator("sz")) {
+            let ix = hol()
+            $('#szerkesztLap').modal("hide");
+            tomb[ix] = {
+                nev: $("#nevsz").val()
+                , szin: $("#szinsz").val()
+                , kor: $("#korsz").val()
+                , id: tomb[ix].id
+            }
+            megjelenit(tomb)
+        }
+    })
+
+    function validator(postfix) {
+        return $("#kor" + postfix).val() >= 0 && $("#kor" + postfix).val() != "" && $("#nev" + postfix).val() != "" && $("#szin" + postfix).val() != ""
+    }
+}
