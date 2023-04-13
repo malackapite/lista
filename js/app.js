@@ -144,13 +144,21 @@ var APP = {
 					//console.log(fing);
 				}
 		})
-	
-		$("#elore").on("click",function() {
+		
+		function nthUpdate(data) {
 			idoCam.start()
 			// console.log(nth);
 			nth.shift()
-			nth.push(Math.min(nth[0]+1,OBJEKTUMLISTA.length-1))
+			nth.push(data)
 			console.log(nth);
+		}
+
+		$("#elore").on("click",function() {
+			//nthUpdate(Math.min(nth[0]+1,OBJEKTUMLISTA.length-1))
+			 idoCam.start()
+			 nth.shift()
+			 nth.push(Math.min(nth[0]+1,OBJEKTUMLISTA.length-1))
+			 console.log(nth);
 		})
 
 		$("#hatra").on("click",function() {
@@ -161,6 +169,21 @@ var APP = {
 			console.log(nth);
 		})
 		};
+
+		$(".teszt").on("click",function(){
+			let ix=0
+			while (!$(".teszt").eq(ix).is(this)) {
+				ix++
+			}
+			idoCam.start()
+			nth.shift()
+			nth.push(Math.min(ix,OBJEKTUMLISTA.length-1))
+			console.log(nth);
+			console.log(ix);
+			$("#nev").text(OBJEKTUMLISTA[ix].nev)
+    		$("#szin").text(OBJEKTUMLISTA[ix].szin)
+    		$("#kor").text(OBJEKTUMLISTA[ix].kor)
+		})
 
 		this.setCamera = function ( value ) {
 
@@ -237,7 +260,9 @@ var APP = {
 			try{
 				if (idoCam.getElapsedTime()<1) {
 					camera.position.x=nth[0]*distance+(nth[1]-nth[0])*(Math.pow((idoCam.getElapsedTime()),2))/(Math.pow(1,2)) *distance
-					//console.log(camera.position.x);
+				}else{
+					camera.position.x=nth[0]*distance+(nth[1]-nth[0]) *distance
+					
 				}
 			}catch(e){}
 			

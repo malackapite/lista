@@ -16,8 +16,14 @@ $(document).ready(function(){
         nth++
         textUpdate(nth)
     }
-    console.log(nth);
+    //console.log(nth);
     })
+
+    let text=""
+    for (let ix = 0; ix < OBJEKTUMLISTA.length; ix++) {
+        text+=`<div class="teszt"></div>`
+        $("#menu").html(text)
+    }
 })
 
 function textUpdate(nth) {
