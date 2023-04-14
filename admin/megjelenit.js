@@ -1,4 +1,3 @@
-import { OBJEKTUMLISTA } from "../both/adat.js"
 import * as rendez from "../both/rendez.mjs"
 
 export let selectedRow = -1
@@ -20,7 +19,7 @@ export function megjelenit(lista) {
         </tr>
         `
         selectXevent(lista[ix].id)
-        selectEditevent(lista[ix].id)
+        selectEditevent(lista[ix].id,lista)
     }
     $("table").eq(0).html(szoveg + "</tbody>")
 
@@ -54,23 +53,23 @@ function selectXevent(nth) {
     })
 }
 
-function selectEditevent(nth) {
+function selectEditevent(nth,lista) {
     $("#td" + nth + "B").ready(function () {
         $("#td" + nth + "B").on("click", function () {
             selectedRow = nth
 
-            let ix=hol()
-            $("#nevsz").val(OBJEKTUMLISTA[ix].nev)
-            $("#szinsz").val(OBJEKTUMLISTA[ix].szin)
-            $("#korsz").val(OBJEKTUMLISTA[ix].kor)
+            let ix=hol(lista)
+            $("#nevsz").val(lista[ix].nev)
+            $("#szinsz").val(lista[ix].szin)
+            $("#korsz").val(lista[ix].kor)
             // console.log(selectedRow);
         })
     })
 }
 
-export function hol() {
+export function hol(lista) {
     let ix = 0
-    while (ix < OBJEKTUMLISTA.length && OBJEKTUMLISTA[ix].id != selectedRow)
+    while (ix < lista.length && lista[ix].id != selectedRow)
         ix++
     return ix
 }

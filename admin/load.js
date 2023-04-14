@@ -76,13 +76,13 @@ function setEvents(tomb) {
 
     $("#torles").on("click", function () {
         $('#torol').modal("hide");
-        tomb.splice(hol(), 1)
+        tomb.splice(hol(tomb), 1)
         megjelenit(tomb)
     })
 
     $("#szerkeszt").on("click", function () {
         if (validator("sz")) {
-            let ix = hol()
+            let ix = hol(tomb)
             $('#szerkesztLap').modal("hide");
             tomb[ix] = {
                 nev: $("#nevsz").val()
@@ -95,6 +95,6 @@ function setEvents(tomb) {
     })
 
     function validator(postfix) {
-        return $("#kor" + postfix).val() >= 0 && $("#kor" + postfix).val() != "" && $("#nev" + postfix).val() != "" && $("#szin" + postfix).val() != ""
+        return $("#kor" + postfix).val() >= 0 && $("#kor" + postfix).val() <=30 && $("#kor" + postfix).val() != "" && $("#nev" + postfix).val() != "" && $("#szin" + postfix).val() != ""
     }
 }
