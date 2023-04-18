@@ -58,6 +58,9 @@ function setEvents(tomb) {
     $("#Szin").on("keyup", function () {
         szur(tomb)
     })
+    $("#Feltetel").on("change", function () {
+        szur(tomb)
+    })
     $("#kuld").on("click", function () {
         if (validator("Ad")) {
             $('#ad').modal("hide");

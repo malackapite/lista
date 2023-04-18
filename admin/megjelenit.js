@@ -11,8 +11,8 @@ export function megjelenit(lista) {
     </tr></thead><tbody>`
     for (let ix = 0; ix < lista.length; ix++) {
         szoveg += `<tr>
-        <th>${lista[ix].nev}</th>
-        <td>${lista[ix].szin}</td>
+        <th>${htmlEntities(lista[ix].nev)}</th>
+        <td>${htmlEntities(lista[ix].szin)}</td>
         <td>${lista[ix].kor}</td>
         <td id="td${lista[ix].id}B" style="text-align:center; cursor:pointer" data-bs-toggle="modal" data-bs-target="#szerkesztLap">✏️💨</td>
         <td id="td${lista[ix].id}" style="text-align:center; cursor:pointer" data-bs-toggle="modal" data-bs-target="#torol">❌💨</td>
@@ -72,4 +72,13 @@ export function hol(lista) {
     while (ix < lista.length && lista[ix].id != selectedRow)
         ix++
     return ix
+}
+
+//xss támadás ellen szolgál
+function htmlEntities(str) {
+    return String(str)
+            .replace(/&/g, '&amp;')   // & -> &amp;
+            .replace(/</g, '&lt;')    // < -> &lt;
+            .replace(/>/g, '&gt;')    // > -> &gt;
+            .replace(/"/g, '&quot;'); // " -> &quot;
 }

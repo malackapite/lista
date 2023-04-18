@@ -16,6 +16,9 @@ img{
 footer{
     text-align: center;
 }
+article{
+    margin: 20px;
+}
 #in{
     margin: 20px;
 }
@@ -26,15 +29,41 @@ footer{
     text-align: right;
 }
 #lep{
-    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 #menu > div{
-    background-color: gray;
+    background-color: gray;  
     border-radius: 100%;
     height: 10px;
     width: 10px;
     display: inline-block;
-    margin: 1px;
+    margin: 2px;
+    cursor: pointer;
+}
+#tetel{
+    background-color: gray;  
+    border-radius: 100%;
+    height: 22px;
+    width: 22px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* padding: 4px; */
+}
+header{
+    display: flex;
+    justify-content: space-between;
+}
+svg{
+    vertical-align: top;
+    position: relative;
+    top: 6px;
+}
+canvas{
+    width: 100%;
 }
 @media only screen and (max-width: 700px) {
     #in > *{

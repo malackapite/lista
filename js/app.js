@@ -169,20 +169,21 @@ var APP = {
 			console.log(nth);
 		})
 		};
-
-		$(".teszt").on("click",function(){
-			let ix=0
-			while (!$(".teszt").eq(ix).is(this)) {
-				ix++
-			}
-			idoCam.start()
-			nth.shift()
-			nth.push(Math.min(ix,OBJEKTUMLISTA.length-1))
-			console.log(nth);
-			console.log(ix);
-			$("#nev").text(OBJEKTUMLISTA[ix].nev)
-    		$("#szin").text(OBJEKTUMLISTA[ix].szin)
-    		$("#kor").text(OBJEKTUMLISTA[ix].kor)
+		$(".oldal").ready(function () {
+			$(".oldal").on("click",function(){
+				let ix=0
+				while (!$(".oldal").eq(ix).is(this)) {
+					ix++
+				}
+				idoCam.start()
+				nth.shift()
+				nth.push(Math.min(ix,OBJEKTUMLISTA.length-1))
+				console.log(nth);
+				console.log(ix);
+				$("#nev").text(OBJEKTUMLISTA[ix].nev)
+				$("#szin").text(OBJEKTUMLISTA[ix].szin)
+				$("#kor").text(OBJEKTUMLISTA[ix].kor)
+			})
 		})
 
 		this.setCamera = function ( value ) {

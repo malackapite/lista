@@ -1,78 +1,163 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>:cat2::dash:</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="both/style.css">
-    <script src="both/jquery.js"></script>
-    <script src="user/main.js" type="module"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>:cat2::dash:</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="both/style.css">
+  <script src="both/jquery.js"></script>
+  <script src="user/main.js" type="module"></script>
+  <link rel="icon" href="cat-kissing.gif" type="image/gif">
 </head>
+
 <body>
-    <main>
-        <header><h1>Adatok <span style="text-decoration: line-through;">tészta</span>szűrése</h1></header>
-        <nav class="navbar navbar-expand bg-body-tertiary">
-            <div class="container-fluid">
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Macskák adatainak megtekintése</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="admin.html">Admin felület</a>
-                  </li>
-                  
-                </ul>
-              </div>
-            </div>
-          </nav>
-          <article>
-          <h1 id="nev"></h1>
-          <p>Szin: <span id="szin"></span></p>
+  <main>
+    <header>
+      <h1>Adatok <span style="text-decoration: line-through;">tészta</span>szűrése</h1>
+      <div id="kosar">
+        <svg data-bs-toggle="modal" data-bs-target="#kosarPanel" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart"
+          viewBox="0 0 16 16">
+          <path
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </svg>
+        <!-- <div id="tetel" class="bg-danger"></div> -->
+      </div>
+    </header>
+    <nav class="navbar navbar-expand bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Macskák adatainak megtekintése</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin.html">Admin felület</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <article class="row list-group-flush">
+      <div class="card col-md-12 col-lg-3 order-lg-last">
+        <div class="card-body">
+          <h2 id="nev" class="card-title"></h2>
+          <p class="card-text">Szin: <span id="szin"></span></p>
           <p>Kor: <span id="kor"></span></p>
-          </article>
-          <div id="lep">
-            <input id="hatra" type="button" class="btn btn-secondary" value="<">
-            <div id="menu">
+          <div class="input-group">
+            <button id="vasarol" class="btn btn-primary">vásárlás</button>
+            <input id="db" type="number" value="1" class="form-control col-4" id="korAd" min="1" max="99">
           </div>
-            <input id="elore" type="button" class="btn btn-secondary" value=">">
-          </div>
-          <footer>
-            Jessie, we need to cook
-        </footer>
-    </main>
-    
-    <script type="module">
+        </div>
+      </div>
+      <div id="macska" class="card col-md-12 col-lg-9 p-0"></div>
+    </article>
+    <div id="lep">
+      <input id="hatra" type="button" class="btn btn-secondary" value="<">
+      <div id="menu">
+      </div>
+      <input id="elore" type="button" class="btn btn-secondary" value=">">
+    </div>
+    <footer>
+      Jessie, we need to cook
+    </footer>
+  </main>
 
-        import * as THREE from './js/three.module.js';
-        import { APP } from './js/app.js';
-        import { VRButton } from './js/VRButton.js';
 
-        window.THREE = THREE; // Used by APP Scripts.
-        window.VRButton = VRButton; // Used by APP Scripts.
+  <!-- modal -->
+<div class="modal fade" id="kosarPanel" tabindex="-1" aria-labelledby="kosarPanelLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="kosarPanelLabel">Vásárlás</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="lista" class="modal-body"> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-        THREE.ColorManagement.enabled = true;
-        
-        var loader = new THREE.FileLoader();
-        loader.load( 'app.json', function ( text ) {
+<!-- <div class="row g-0 align-items-center">
+  <div class="col-4">
+    <img src="http://http.cat/301" class="img-fluid rounded-start" alt="...">
+  </div>
+  <div class="col-8">
+    <div class=" card-body d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="card-title">${tomb[ix].nev}</h5>
+        <span class="card-text">${tomb[ix].szin}</span>
+        <p class="card-text">${tomb[ix].kor}</p>
+      </div>
+      <div>
+      <div class="input-group">
+        <input type="text" class="form-control" aria-label="db">
+        <span class="input-group-text">db</span>
+      </div>
+    </div>
+      <span class="card-text">${kosarlista[ix]}db</span>
+      <p class="card-text" style="font-size: xx-large;">❌💨</p>  
+    </div>
+  </div> -->
+</div>
 
-            var player = new APP.Player();
-            player.load( JSON.parse( text ) );
-            player.setSize( window.innerWidth-8, window.innerHeight/1.7 );
-            player.play();
+<!-- <div class="card bg-secondary mb-3 row">
+  <div class="col-3 ">
+    <img src="http://http.cat/301" class="img-fluid rounded-start" alt="...">
+  </div>
+  <div class="row g-0 col-4">
+      <div class=" card-body d-flex justify-content-between align-items-center">
+        <div class="">
+          <img src="http://http.cat/301" class="img-fluid rounded-start" alt="..." style="max-width: 100px;">
+        </div>
+        <div>
+          <h5 class="card-title">Macska</h5>
+          <span class="card-text">fekete</span>
+          <p class="card-text">43</p>
+        </div>
+        <span class="card-text">43</span>
+        <p class="card-text" style="font-size: xx-large;">❌</p>
+      </div>
+  </div>
+</div> -->
+  <script type="module">
 
-            document.getElementsByTagName("article")[0].appendChild( player.dom );
-            
-            window.addEventListener( 'resize', function () {
+    import * as THREE from './js/three.module.js';
+    import { APP } from './js/app.js';
+    import { VRButton } from './js/VRButton.js';
 
-                player.setSize( window.innerWidth-8, window.innerHeight/1.7 );
+    window.THREE = THREE; // Used by APP Scripts.
+    window.VRButton = VRButton; // Used by APP Scripts.
 
-            } );
+    THREE.ColorManagement.enabled = true;
 
-        } );
-    </script>
+    var loader = new THREE.FileLoader();
+    loader.load('app.json', function (text) {
+
+      var player = new APP.Player();
+      player.load(JSON.parse(text));
+      player.setSize($("#macska").width() - 8, window.innerHeight / 1.7);
+      player.play();
+      document.getElementById("macska").appendChild(player.dom);
+
+      window.addEventListener('resize', function () {
+
+        player.setSize($("#macska").width() - 8, window.innerHeight / 1.7);
+      });
+
+    });
+  </script>
 </body>
+
 </html>

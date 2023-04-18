@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="both/style.css">
   <script src="both/jquery.js"></script>
   <script src="admin/load.js" type="module"></script>
+  <link rel="icon" href="cat-kissing.gif" type="image/gif">
 </head>
 
 <body>
@@ -39,9 +40,33 @@
     <article>
       <div id="in" class="row justify-content-between">
         <div class="col-10 row">
-          <input class="col-4" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
+          
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
+            <input class="form-control" type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
+              <select class="form-select" name="Feltetel" id="Feltetel">
+                <option value="==">=</option>
+                <option value=">">></option>
+                <option value=">=">>=</option>
+                <option value="<"><</option>
+                <option value="<="><=</option>
+                <option value="!="><></option>
+              </select>
+            <input class="form-control" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
+            <!-- <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"> -->
+          </div>
+
+          <!-- <input class="col-4" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
           <input class="col-4" type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
-          <input class="col-4" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
+          <select class="col-1" name="Feltetel" id="Feltetel">
+            <option value="==">=</option>
+            <option value=">">></option>
+            <option value=">=">>=</option>
+            <option value="<"><</option>
+            <option value="<="><=</option>
+            <option value="!="><></option>
+          </select>
+          <input class="col-3" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés"> -->
         </div>
         <div id="gomb" class="col-2">
           <input id="ujElem" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ad" type="button"

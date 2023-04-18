@@ -7,10 +7,10 @@ export function szurNevSzerint(lista, feltetel){
     return eredmenyLista
 }
 
-export function szurKorSzerint(lista, feltetel){
+export function szurKorSzerint(lista, feltetel, kor){
     try{
         const eredmenyLista = lista.filter(function(macska){
-            return eval(macska.kor+feltetel)
+            return eval(macska.kor+feltetel+kor)
         })
         return eredmenyLista
     }
@@ -28,7 +28,7 @@ export function szurSzinSzerint(lista, feltetel){
 
 export function szur(belista){
     let lista=szurNevSzerint(belista, $("#Nev").val())
-    lista=szurKorSzerint(lista, $("#Kor").val())
+    lista=szurKorSzerint(lista, $("#Feltetel").val(), $("#Kor").val())
     lista=szurSzinSzerint(lista, $("#Szin").val())
     megjelenit(lista)
 }
