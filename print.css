@@ -1,0 +1,6 @@
+header,main,footer,.modal{
+        visibility: hidden;
+}
+#tabla{
+    visibility: visible;
+}

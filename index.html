@@ -15,6 +15,7 @@
   <script src="both/jquery.js"></script>
   <script src="user/main.js" type="module"></script>
   <link rel="icon" href="cat-kissing.gif" type="image/gif">
+  <link rel="stylesheet" href="print.css" media="print">
 </head>
 
 <body>
@@ -69,7 +70,7 @@
       Jessie, we need to cook
     </footer>
   </main>
-
+<table id="tabla"></table>
 
   <!-- modal -->
 <div class="modal fade" id="kosarPanel" tabindex="-1" aria-labelledby="kosarPanelLabel" aria-hidden="true">
@@ -83,7 +84,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button id="vasarlas" type="button" class="btn btn-primary" onclick="window.print()">Nyomtatás</button>
       </div>
     </div>
   </div>

@@ -66,8 +66,8 @@ function setEvents(tomb) {
         kosarelemGeneral()
     });
     function kosarTorolEvent(nth) {
-        $("#K"+nth).ready(function () {
-            $("#K"+nth).on("click", function () {
+        $("#K" + nth).ready(function () {
+            $("#K" + nth).on("click", function () {
                 kosarlista[nth] = 0
                 kosarelemGeneral()
             })
@@ -81,7 +81,7 @@ function setEvents(tomb) {
                 szoveg += `<div class="card mb-3">
         <div class="row g-0 align-items-center shadow-sm">
           <div class="col-3">
-            <img src="http://http.cat/301" class="img-fluid rounded-start" alt="...">
+            <img src="http://http.cat/${parseInt(Math.random() * 3) + 1}0${parseInt(Math.random() * 10)}" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-9">
             <div class=" card-body d-flex justify-content-between align-items-center">
@@ -101,8 +101,35 @@ function setEvents(tomb) {
           </div>
         </div>
       </div>`
-      kosarTorolEvent(ix)
+            kosarTorolEvent(ix)
         }
         $("#lista").html(szoveg)
+    }
+    $("#vasarlas").on("click", function () {
+        let lista=[]
+        for (let ix = 0; ix < kosarlista.length; ix++) {
+            if(kosarlista[ix]>0)
+                lista.push(tomb[ix])
+        }
+        a(lista)
+
+        console.log(kosarlista.filter(function (key) { return key > 0 }));
+    })
+
+    function a(tomb) {
+        let szoveg = `<thead><tr class="table-dark">
+        <th>név</th>
+        <th>szín</th>
+        <th>kor</th>
+        </tr></thead><tbody>`
+        for (let ix = 0; ix < tomb.length; ix++) {
+            szoveg += `<tr>
+            <th>${tomb[ix].nev}</th>
+            <td>${tomb[ix].szin}</td>
+            <td>${tomb[ix].kor}</td>
+            </tr>
+            `
+        }
+        $("table").eq(0).html(szoveg + "</tbody>")
     }
 }
