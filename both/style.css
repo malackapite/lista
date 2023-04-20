@@ -33,15 +33,6 @@ article{
     display: flex;
     justify-content: center;
 }
-/* #menu > div{
-    background-color: gray;  
-    border-radius: 100%;
-    height: 10px;
-    width: 10px;
-    display: inline-block;
-    margin: 2px;
-    cursor: pointer;
-} */
 #tetel{
     background-color: gray;  
     border-radius: 100%;
@@ -62,22 +53,29 @@ svg{
     position: relative;
     top: 6px;
 }
-canvas{
-    width: 100%;
+#kosar > div{
+    height: 20px;
+    width: 20px;
+    font-size: smaller;
+    text-align: center;
+    vertical-align: middle;
+    transition: 1s;
+    position: relative;
+    right: -15px;
+    top: -30px;
+    /* visibility: hidden; */
+    opacity: 0;
 }
-
+#kosar > div, svg{
+    cursor: pointer;
+}
 #tabla{
-    /* display: none; */
+    display: none;
     visibility: hidden;
 }
 @media only screen and (max-width: 700px) {
-    #in > *{
+    #in > * > * > *{
        width: 100%;
-    }
-}
-@media only screen and (max-width: 600px) {
-    #in > * > input[type=text]{
-        width: 100%;
     }
 }
 

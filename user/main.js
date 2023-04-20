@@ -1,5 +1,3 @@
-import * as THREE from "../js/three.module.js";
-
 $(document).ready(function () {
     getObjLista();
 });
@@ -11,13 +9,11 @@ function textUpdate(nth, lista) {
 }
 
 function getObjLista() {
-    let tomb1 = [];
-    let file = "admin/adat.json";
+    let file = "both/adat.json";
     fetch(file)
         .then((response) => response.json())
         .then((data) => {
-            tomb1 = data.OBJEKTUMLISTA;
-            setEvents(tomb1);
+            setEvents(data.OBJEKTUMLISTA);
         })
         .catch((e) => console.log(e));
 }
@@ -58,7 +54,6 @@ function setEvents(tomb) {
         $(".oldal").ready(function () {
             $(".oldal").on("click", function () {
                 $(".oldal").eq(nth).button('toggle')
-                console.log(nth);
                 let ix = 0;
                 while (!$(".oldal").eq(ix).is(this)) ix++;
                 nth = ix;
@@ -71,15 +66,12 @@ function setEvents(tomb) {
     $("#vasarol").on("click", function () {
         const toastRossz = new bootstrap.Toast($('#liveToast'))
         const toastJo = new bootstrap.Toast($('#sikeresVasarlas'))
-        if ($("#db").val() != "" && $("#db").val() > 0 && kosarlista[nth] + parseInt($("#db").val()) < 100) {
+        if (validator("#db", kosarlista[nth])) {
             kosarlista[nth] += parseInt($("#db").val());
             toastJo.show()
+            setKosarDb()
         }
         else toastRossz.show()
-        // console.log($("#db").val());
-        //console.log(nth);
-        console.log(kosarlista);
-        $("#tetel").text(kosarlista.filter(function (key) { return key > 0 }).length)
     });
 
     function panelNumEvent(ix) {
@@ -87,7 +79,7 @@ function setEvents(tomb) {
         const toastJo = new bootstrap.Toast($('#sikeresVasarlas'))
         $(".panelNum" + ix).ready(function () {
             $(".panelNum" + ix).on("change", function () {
-                if ($(".panelNum" + ix).val() != "" && $(".panelNum" + ix).val() > 0 && $(".panelNum" + ix).val() < 100) {
+                if (validator(".panelNum" + ix,0)) {
                     kosarlista[ix] = parseInt($(".panelNum" + ix).val());
                     toastJo.show()
                 }
@@ -100,13 +92,22 @@ function setEvents(tomb) {
         })
     }
 
+    function validator(nev, val) {
+        return $(nev).val() != "" && $(nev).val() > 0 &&  val + parseInt($(nev).val()) < 100
+    }
+
     $("svg").eq(0).on("click", function () {
         kosarelemGeneral()
     });
+    $("#kosarDb").on("click", function () {
+        kosarelemGeneral()
+    })
+
     function kosarTorolEvent(nth) {
         $("#K" + nth).ready(function () {
             $("#K" + nth).on("click", function () {
                 kosarlista[nth] = 0
+                setKosarDb()
                 kosarelemGeneral()
             })
         })
@@ -119,7 +120,7 @@ function setEvents(tomb) {
                 szoveg += `<div class="card mb-3">
         <div class="row g-0 align-items-center shadow-sm">
           <div class="col-3">
-            <img src="http://http.cat/${parseInt(Math.random() * 3) + 1}0${parseInt(Math.random() * 10)}" class="img-fluid rounded-start" alt="...">
+            <img src="http://http.cat/40${tomb[ix].id}" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-9">
             <div class=" card-body d-flex justify-content-between align-items-center">
@@ -164,14 +165,11 @@ function setEvents(tomb) {
         }
         $("table").eq(0).html(szoveg + "</tbody>")
         window.print()
+        $("#kosarPanel").modal("hide");
     })
-
-    const toastTrigger = document.getElementById('liveToastBtn')
-    if (toastTrigger) {
-        toastTrigger.addEventListener('click', () => {
-            const toast = new bootstrap.Toast($('#liveToast'))
-
-            toast.show()
-        })
+    function setKosarDb() {
+        let db=kosarlista.filter(function (key) { return key > 0 }).length
+        $("#kosarDb").text(db)
+        $("#kosarDb").css("opacity",db>0?1:0)
     }
 }

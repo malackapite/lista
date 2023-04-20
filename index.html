@@ -15,20 +15,20 @@
   <script src="both/jquery.js"></script>
   <script src="user/main.js" type="module"></script>
   <link rel="icon" href="cat-kissing.gif" type="image/gif">
-  <link rel="stylesheet" href="print.css" media="print">
+  <link rel="stylesheet" href="user/print.css" media="print">
 </head>
 
 <body>
   <main>
     <header>
       <h1>Adatok <span style="text-decoration: line-through;">tészta</span>szűrése</h1>
-      <div id="kosar">
-        <svg data-bs-toggle="modal" data-bs-target="#kosarPanel" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart"
-          viewBox="0 0 16 16">
+      <div id="kosar" data-bs-toggle="modal" data-bs-target="#kosarPanel">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32"
+          height="32" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
           <path
             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
         </svg>
-        <!-- <div id="tetel" class="bg-danger"></div> -->
+        <div id="kosarDb" class="rounded-5 bg-danger link-light">4</div>
       </div>
     </header>
     <nav class="navbar navbar-expand bg-body-tertiary">
@@ -59,109 +59,65 @@
             </div>
           </div>
           <div id="hirdetes" class="col-3 col-lg-12">
-            <img id="catcam" class="rounded" src="cat-pong.gif" style="margin-top:10px;" alt="">
+            <img id="catcam" class="rounded" src="user/cat-pong.gif" style="margin-top:10px;" alt="">
             <small style="margin: auto;">Cat Cam (ad) – Szigetelő Sziget kft.</small>
           </div>
         </div>
       </div>
       <div id="macska" class="card col-md-12 col-lg-9 p-0"></div>
     </article>
-    <!-- <div id="lep">
-      <input id="hatra" type="button" class="btn btn-secondary" value="<">
-      <div id="menu">
-      </div>
-      <input id="elore" type="button" class="btn btn-secondary" value=">">
-    </div> -->
     <div id="lep" class="btn-group" role="group">
     </div>
     <footer>
       Jessie, we need to cook
     </footer>
   </main>
-<table id="tabla" class="table table-striped table-hover table-bordered"></table>
+  <table id="tabla" class="table table-striped table-hover table-bordered"></table>
 
   <!-- modal -->
-<div class="modal fade" id="kosarPanel" tabindex="-1" aria-labelledby="kosarPanelLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="kosarPanelLabel">Vásárlás</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div id="lista" class="modal-body"> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button id="vasarlas" type="button" class="btn btn-primary">Nyomtatás</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- toast -->
-<div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 end-0">
-  <div id="liveToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        Illegális bemenet!
-        <img src="rat-spinning.gif" style="max-width: 32px;" alt="">
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-</div>
-<div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 end-0">
-  <div id="sikeresVasarlas" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        A megrendelést sikeresen rögzítettük!
-        <img src="d.gif" style="max-width: 32px;" alt="">
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-</div>
-<!-- <div class="row g-0 align-items-center">
-  <div class="col-4">
-    <img src="http://http.cat/301" class="img-fluid rounded-start" alt="...">
-  </div>
-  <div class="col-8">
-    <div class=" card-body d-flex justify-content-between align-items-center">
-      <div>
-        <h5 class="card-title">${tomb[ix].nev}</h5>
-        <span class="card-text">${tomb[ix].szin}</span>
-        <p class="card-text">${tomb[ix].kor}</p>
-      </div>
-      <div>
-      <div class="input-group">
-        <input type="text" class="form-control" aria-label="db">
-        <span class="input-group-text">db</span>
-      </div>
-    </div>
-      <span class="card-text">${kosarlista[ix]}db</span>
-      <p class="card-text" style="font-size: xx-large;">❌💨</p>  
-    </div>
-  </div> -->
-<!-- </div> -->
-
-<!-- <div class="card bg-secondary mb-3 row">
-  <div class="col-3 ">
-    <img src="http://http.cat/301" class="img-fluid rounded-start" alt="...">
-  </div>
-  <div class="row g-0 col-4">
-      <div class=" card-body d-flex justify-content-between align-items-center">
-        <div class="">
-          <img src="http://http.cat/301" class="img-fluid rounded-start" alt="..." style="max-width: 100px;">
+  <div class="modal fade" id="kosarPanel" tabindex="-1" aria-labelledby="kosarPanelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="kosarPanelLabel">Vásárlás</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div>
-          <h5 class="card-title">Macska</h5>
-          <span class="card-text">fekete</span>
-          <p class="card-text">43</p>
+        <div id="lista" class="modal-body">
         </div>
-        <span class="card-text">43</span>
-        <p class="card-text" style="font-size: xx-large;">❌</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+          <button id="vasarlas" type="button" class="btn btn-primary">Nyomtatás</button>
+        </div>
       </div>
+    </div>
   </div>
-</div> -->
+  <!-- toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 end-0">
+    <div id="liveToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          Illegális bemenet!
+          <img src="both/rat-spinning.gif" style="max-width: 32px;" alt="">
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 end-0">
+    <div id="sikeresVasarlas" class="toast align-items-center text-bg-success border-0" role="alert"
+      aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          A megrendelést sikeresen rögzítettük!
+          <img src="both/d.gif" style="max-width: 32px;" alt="">
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
   <script type="module">
 
     import * as THREE from './js/three.module.js';
@@ -178,13 +134,13 @@
 
       var player = new APP.Player();
       player.load(JSON.parse(text));
-      player.setSize($("#macska").width() - 8, window.innerHeight / 1.7);
+      player.setSize($("#macska").width() - 8, window.innerHeight / 1.5);
       player.play();
       document.getElementById("macska").appendChild(player.dom);
 
       window.addEventListener('resize', function () {
 
-        player.setSize($("#macska").width() - 8, window.innerHeight / 1.7);
+        player.setSize($("#macska").width() - 8, window.innerHeight / 1.5);
       });
 
     });

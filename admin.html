@@ -40,37 +40,23 @@
     <article>
       <div id="in" class="row justify-content-between">
         <div class="col-md-12 col-lg-10 row">
-          
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 row">
             <input class="form-control" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
             <input class="form-control" type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
-              <select class="form-select" name="Feltetel" id="Feltetel">
-                <option value="==">=</option>
-                <option value=">">></option>
-                <option value=">=">>=</option>
-                <option value="<">&lt;</option>
-                <option value="<=">&lt;=</option>
-                <option value="!=">&lt;></option>
-              </select>
+            <select class="form-select" name="Feltetel" id="Feltetel">
+              <option value="==">=</option>
+              <option value=">">></option>
+              <option value=">=">>=</option>
+              <option value="<">&lt;</option>
+              <option value="<=">&lt;=</option>
+              <option value="!=">&lt;></option>
+            </select>
             <input class="form-control" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
-            <!-- <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"> -->
           </div>
-
-          <!-- <input class="col-4" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
-          <input class="col-4" type="text" name="Szin" id="Szin" placeholder="Szín szerint szűrés">
-          <select class="col-1" name="Feltetel" id="Feltetel">
-            <option value="==">=</option>
-            <option value=">">></option>
-            <option value=">=">>=</option>
-            <option value="<"><</option>
-            <option value="<="><=</option>
-            <option value="!="><></option>
-          </select>
-          <input class="col-3" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés"> -->
         </div>
-        <div id="gomb" class="col-2">
+        <div id="gomb" class="col-lg-2">
           <input id="ujElem" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ad" type="button"
-          value="Új elem">
+            value="Új elem">
         </div>
       </div>
       <table class="table table-striped table-hover table-bordered"></table>
@@ -164,19 +150,21 @@
       </div>
     </div>
   </div>
-<!-- toast -->
-<div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 end-0">
-  <div id="liveToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        Illegális bemenet!
-        <img src="rat-spinning.gif" style="max-width: 32px;" alt="">
+  <!-- toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 end-0">
+    <div id="liveToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          Illegális bemenet!
+          <img src="both/rat-spinning.gif" style="max-width: 32px;" alt="">
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
       </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
-</div>
-
+  <div id="macska"></div>
   <script type="module">
 
     import * as THREE from './js/three.module.js';
@@ -193,14 +181,14 @@
 
       var player = new APP.Player();
       player.load(JSON.parse(text));
-      player.setSize(window.innerWidth - 8, window.innerHeight / 1.7);
+      player.setSize(window.innerWidth - 8, window.innerHeight / 1.5);
       player.play();
 
       document.body.appendChild(player.dom);
 
       window.addEventListener('resize', function () {
 
-        player.setSize(window.innerWidth - 8, window.innerHeight / 1.7);
+        player.setSize(window.innerWidth - 8, window.innerHeight / 1.5);
 
       });
 
