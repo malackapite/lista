@@ -26,41 +26,79 @@ function setEvents(tomb) {
     let nth = 0;
     let kosarlista = new Array(tomb.length).fill(0);
     textUpdate(nth, tomb);
-    $("#hatra").on("click", function () {
-        if (nth > 0) {
-            nth--;
-            textUpdate(nth, tomb);
-        }
-        // console.log(nth);
-    });
-    $("#elore").on("click", function () {
-        if (nth < tomb.length - 1) {
-            nth++;
-            textUpdate(nth, tomb);
-        }
-        //console.log(nth);
-    });
-
-    let text = "";
+    $("#hatra").ready(function () {
+        $("#hatra").on("click", function () {
+            $(".oldal").eq(nth).button('toggle')
+            if (nth > 0) {
+                nth--;
+                textUpdate(nth, tomb);
+                $("#db").val("1");
+            }
+            $(".oldal").eq(nth).button('toggle')
+        });
+    })
+    $("#elore").ready(function () {
+        $("#elore").on("click", function () {
+            $(".oldal").eq(nth).button('toggle')
+            if (nth < tomb.length - 1) {
+                nth++;
+                textUpdate(nth, tomb);
+                $("#db").val("1");
+            }
+            $(".oldal").eq(nth).button('toggle')
+        });
+    })
+    let text = `
+    <button type="button" id="hatra" class="btn btn-secondary"><</button>
+    `;
     for (let ix = 0; ix < tomb.length; ix++) {
-        text += `<div class="oldal"></div>`;
-        $("#menu").html(text);
-        $(".oldal").on("click", function () {
-            let ix = 0;
-            while (!$(".oldal").eq(ix).is(this)) ix++;
-            nth = ix;
+        text += `<button type="button" class="btn btn-secondary oldal">${ix + 1}</button>`;
+        $("#lep").html(text + `<button id="elore" type="button" class="btn btn-secondary">></button>`);
+        $(".oldal").eq(0).button('toggle')
+        $(".oldal").ready(function () {
+            $(".oldal").on("click", function () {
+                $(".oldal").eq(nth).button('toggle')
+                console.log(nth);
+                let ix = 0;
+                while (!$(".oldal").eq(ix).is(this)) ix++;
+                nth = ix;
+                $("#db").val("1");
+                $(".oldal").eq(nth).button('toggle')
+            })
         });
     }
 
     $("#vasarol").on("click", function () {
-        if ($("#db").val() != "" && $("#db").val() > 0)
+        const toastRossz = new bootstrap.Toast($('#liveToast'))
+        const toastJo = new bootstrap.Toast($('#sikeresVasarlas'))
+        if ($("#db").val() != "" && $("#db").val() > 0 && kosarlista[nth] + parseInt($("#db").val()) < 100) {
             kosarlista[nth] += parseInt($("#db").val());
+            toastJo.show()
+        }
+        else toastRossz.show()
         // console.log($("#db").val());
         //console.log(nth);
         console.log(kosarlista);
         $("#tetel").text(kosarlista.filter(function (key) { return key > 0 }).length)
     });
 
+    function panelNumEvent(ix) {
+        const toastRossz = new bootstrap.Toast($('#liveToast'))
+        const toastJo = new bootstrap.Toast($('#sikeresVasarlas'))
+        $(".panelNum" + ix).ready(function () {
+            $(".panelNum" + ix).on("change", function () {
+                if ($(".panelNum" + ix).val() != "" && $(".panelNum" + ix).val() > 0 && $(".panelNum" + ix).val() < 100) {
+                    kosarlista[ix] = parseInt($(".panelNum" + ix).val());
+                    toastJo.show()
+                }
+                else {
+                    toastRossz.show()
+                    $(".panelNum" + ix).val(kosarlista[nth])
+                }
+                console.log(43);
+            })
+        })
+    }
 
     $("svg").eq(0).on("click", function () {
         kosarelemGeneral()
@@ -92,7 +130,7 @@ function setEvents(tomb) {
               </div>
               <div>
                 <div class="input-group">
-                    <input type="number" value="${kosarlista[ix]}" class="form-control" aria-label="db">
+                    <input type="number" value="${kosarlista[ix]}" class="form-control panelNum${ix}" aria-label="db">
                     <span class="input-group-text">db</span>
                 </div>
               </div>
@@ -102,34 +140,38 @@ function setEvents(tomb) {
         </div>
       </div>`
             kosarTorolEvent(ix)
+            panelNumEvent(ix)
         }
         $("#lista").html(szoveg)
     }
     $("#vasarlas").on("click", function () {
-        let lista=[]
-        for (let ix = 0; ix < kosarlista.length; ix++) {
-            if(kosarlista[ix]>0)
-                lista.push(tomb[ix])
-        }
-        a(lista)
-
-        console.log(kosarlista.filter(function (key) { return key > 0 }));
-    })
-
-    function a(tomb) {
         let szoveg = `<thead><tr class="table-dark">
         <th>név</th>
         <th>szín</th>
         <th>kor</th>
+        <th>darab</th>
         </tr></thead><tbody>`
         for (let ix = 0; ix < tomb.length; ix++) {
-            szoveg += `<tr>
-            <th>${tomb[ix].nev}</th>
-            <td>${tomb[ix].szin}</td>
-            <td>${tomb[ix].kor}</td>
-            </tr>
-            `
+            if (kosarlista[ix] > 0) {
+                szoveg += `<tr>
+                <th>${tomb[ix].nev}</th>
+                <td>${tomb[ix].szin}</td>
+                <td style="text-align:right;">${tomb[ix].kor}</td>
+                <td style="text-align:right;">${kosarlista[ix]}</td>
+                </tr>
+                `
+            }
         }
         $("table").eq(0).html(szoveg + "</tbody>")
+        window.print()
+    })
+
+    const toastTrigger = document.getElementById('liveToastBtn')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', () => {
+            const toast = new bootstrap.Toast($('#liveToast'))
+
+            toast.show()
+        })
     }
 }

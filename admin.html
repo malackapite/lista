@@ -39,7 +39,7 @@
     </nav>
     <article>
       <div id="in" class="row justify-content-between">
-        <div class="col-10 row">
+        <div class="col-md-12 col-lg-10 row">
           
           <div class="input-group mb-3">
             <input class="form-control" type="text" name="Nev" id="Nev" placeholder="Név szerint szűrés">
@@ -48,9 +48,9 @@
                 <option value="==">=</option>
                 <option value=">">></option>
                 <option value=">=">>=</option>
-                <option value="<"><</option>
-                <option value="<="><=</option>
-                <option value="!="><></option>
+                <option value="<">&lt;</option>
+                <option value="<=">&lt;=</option>
+                <option value="!=">&lt;></option>
               </select>
             <input class="form-control" type="text" name="Kor" id="Kor" placeholder="Kor szerint szűrés">
             <!-- <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"> -->
@@ -81,17 +81,17 @@
   </main>
 
   <!-- modal -->
-  <div class="modal fade" id="ad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="ad" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Macska hozzáadása</h1>
+          <h1 class="modal-title fs-5">Macska hozzáadása</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="nevAd" class="col-form-label" pattern="^(?!.*\S)">Név:</label>
+              <label for="nevAd" class="col-form-label">Név:</label>
               <input type="text" class="form-control" id="nevAd">
             </div>
             <div class="mb-3">
@@ -133,17 +133,17 @@
     </div>
   </div>
 
-  <div class="modal fade" id="szerkesztLap" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="szerkesztLap" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Macska szerkesztése</h1>
+          <h1 class="modal-title fs-5">Macska szerkesztése</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="nevsz" class="col-form-label" pattern="^(?!.*\S)">Név:</label>
+              <label for="nevsz" class="col-form-label">Név:</label>
               <input type="text" class="form-control" id="nevsz">
             </div>
             <div class="mb-3">
@@ -164,7 +164,18 @@
       </div>
     </div>
   </div>
-
+<!-- toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 end-0">
+  <div id="liveToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        Illegális bemenet!
+        <img src="rat-spinning.gif" style="max-width: 32px;" alt="">
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
 
   <script type="module">
 

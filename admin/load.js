@@ -1,12 +1,12 @@
-import { SZAMLISTA, SZOVEGLISTA} from "../both/adat.js";
+import { SZAMLISTA, SZOVEGLISTA } from "../both/adat.js";
 import { szurNevSzerint, szurKorSzerint, szurSzinSzerint, szur } from "../both/szures.js";
 import { megjelenit, selectedRow, hol } from "./megjelenit.js";
 
 
 $(document).ready(function () {
-    
+
     getObjLista()
-    
+
     /*console.log(SZAMLISTA);
     rendezesSzam(SZAMLISTA)
     console.log(SZAMLISTA);
@@ -62,6 +62,7 @@ function setEvents(tomb) {
         szur(tomb)
     })
     $("#kuld").on("click", function () {
+        const toastRossz = new bootstrap.Toast($('#liveToast'))
         if (validator("Ad")) {
             $('#ad').modal("hide");
             tomb.push({
@@ -74,7 +75,7 @@ function setEvents(tomb) {
             $("#nevAd").val("")
             $("#szinAd").val("")
             $("#korAd").val("")
-        }
+        } else toastRossz.show()
     })
 
     $("#torles").on("click", function () {
@@ -84,6 +85,7 @@ function setEvents(tomb) {
     })
 
     $("#szerkeszt").on("click", function () {
+        const toastRossz = new bootstrap.Toast($('#liveToast'))
         if (validator("sz")) {
             let ix = hol(tomb)
             $('#szerkesztLap').modal("hide");
@@ -94,10 +96,10 @@ function setEvents(tomb) {
                 , id: tomb[ix].id
             }
             megjelenit(tomb)
-        }
+        } else toastRossz.show()
     })
 
     function validator(postfix) {
-        return $("#kor" + postfix).val() >= 0 && $("#kor" + postfix).val() <=30 && $("#kor" + postfix).val() != "" && $("#nev" + postfix).val() != "" && $("#szin" + postfix).val() != ""
+        return $("#kor" + postfix).val() >= 0 && $("#kor" + postfix).val() <= 30 && $("#kor" + postfix).val() != "" && $("#nev" + postfix).val() != "" && $("#szin" + postfix).val() != ""
     }
 }

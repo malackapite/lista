@@ -33,7 +33,7 @@ article{
     display: flex;
     justify-content: center;
 }
-#menu > div{
+/* #menu > div{
     background-color: gray;  
     border-radius: 100%;
     height: 10px;
@@ -41,7 +41,7 @@ article{
     display: inline-block;
     margin: 2px;
     cursor: pointer;
-}
+} */
 #tetel{
     background-color: gray;  
     border-radius: 100%;
@@ -67,13 +67,14 @@ canvas{
 }
 
 #tabla{
+    /* display: none; */
     visibility: hidden;
 }
 @media only screen and (max-width: 700px) {
     #in > *{
        width: 100%;
     }
-  }
+}
 @media only screen and (max-width: 600px) {
     #in > * > input[type=text]{
         width: 100%;

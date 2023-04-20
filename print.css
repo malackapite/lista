@@ -1,6 +1,11 @@
-header,main,footer,.modal{
-        visibility: hidden;
+main, .modal, .toast{
+    display: none;
+    visibility: hidden;
 }
 #tabla{
+    display: block;
     visibility: visible;
+}
+#tabla td,#tabla th{
+    width: 25vw;
 }
